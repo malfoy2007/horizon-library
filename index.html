@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Horizon Library & Self Study Point | Deepnagar</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,8 +23,6 @@
                             500: '#3b82f6',
                             800: '#1e40af',
                             900: '#1e3a8a',
-                            gold: '#f59e0b',
-                            goldHover: '#d97706',
                             darkBg: '#0b1120',
                             darkCard: '#151e32',
                             darkBorder: '#23314d'
@@ -35,6 +33,272 @@
                     }
                 }
             }
+        }
+    </script>
+    <style>
+        /* Prevent horizontal overflow scrolling bug on mobile */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        .glow-amber:hover {
+            box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.3);
+        }
+        .glow-blue:hover {
+            box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-brand-darkBg dark:text-slate-100 transition-colors duration-300 font-sans selection:bg-amber-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-brand-darkBg/90 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex justify-between items-center">
+            
+            <!-- Logo Section -->
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <img src="img/LOGO.png" alt="Horizon Library Logo" class="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-xl shadow-md border border-amber-500/80 bg-white p-0.5" onerror="this.style.display='none'; document.getElementById('fallback-logo').classList.remove('hidden')">
+                    <div id="fallback-logo" class="hidden w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-brand-900 to-blue-600 flex items-center justify-center text-amber-400 text-xl font-bold shadow-lg border border-amber-500">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-xl font-black tracking-tight bg-gradient-to-r from-brand-900 via-blue-700 to-amber-600 dark:from-amber-400 dark:via-amber-200 dark:to-white bg-clip-text text-transparent leading-none">HORIZON LIBRARY</h1>
+                    <p class="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 tracking-wide mt-0.5">Deepnagar, Nalanda</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-semibold text-xs lg:text-sm text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-amber-500 dark:hover:text-amber-400 transition">About</a>
+                <a href="#facilities" class="hover:text-amber-500 dark:hover:text-amber-400 transition">Facilities</a>
+                <a href="#seats" class="hover:text-amber-500 dark:hover:text-amber-400 transition">Seats Map</a>
+                <a href="#plans" class="hover:text-amber-500 dark:hover:text-amber-400 transition">Plans</a>
+                <a href="#calculator" class="hover:text-amber-500 dark:hover:text-amber-400 transition">Calculator</a>
+                <a href="#contact" class="hover:text-amber-500 dark:hover:text-amber-400 transition">Contact</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <button id="theme-toggle" aria-label="Toggle Theme" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 flex items-center justify-center transition shadow-sm">
+                    <i id="theme-toggle-dark-icon" class="hidden fa-solid fa-moon text-sm sm:text-base"></i>
+                    <i id="theme-toggle-light-icon" class="hidden fa-solid fa-sun text-sm sm:text-base"></i>
+                </button>
+
+                <a href="https://whatsapp.com/channel/0029Va5EuKdHwXbEwIoerc0T" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> Channel
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-brand-darkBg border-b border-slate-200 dark:border-slate-800 px-6 py-4 space-y-3 font-bold text-sm">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-700 dark:text-slate-200 hover:text-amber-500">About Us</a>
+            <a href="#facilities" onclick="toggleMobileMenu()" class="block text-slate-700 dark:text-slate-200 hover:text-amber-500">Facilities</a>
+            <a href="#seats" onclick="toggleMobileMenu()" class="block text-slate-700 dark:text-slate-200 hover:text-amber-500">Seats Map</a>
+            <a href="#plans" onclick="toggleMobileMenu()" class="block text-slate-700 dark:text-slate-200 hover:text-amber-500">Plans & Pricing</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block text-slate-700 dark:text-slate-200 hover:text-amber-500">Fee Calculator</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-700 dark:text-slate-200 hover:text-amber-500">Contact</a>
+            <a href="https://whatsapp.com/channel/0029Va5EuKdHwXbEwIoerc0T" target="_blank" class="block text-emerald-600 dark:text-emerald-400 font-bold">
+                <i class="fa-brands fa-whatsapp"></i> Join WhatsApp Channel
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="relative overflow-hidden py-12 sm:py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <div class="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-award"></i> Premium Self Study Center
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                        Focus. Learn. <br/>
+                        <span class="bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500 bg-clip-text text-transparent">Conquer Your Exams.</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-xs sm:text-base max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        A peaceful, climate-controlled, and distraction-free self-study oasis designed specifically for competitive exam aspirants.
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-3">
+                        <a href="#plans" class="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black px-6 py-3.5 rounded-xl shadow-lg transition text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-chair"></i> Reserve Seat Now
+                        </a>
+                        <a href="tel:9199706121" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3.5 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 text-xs">
+                            <i class="fa-solid fa-phone text-amber-400"></i> +91 9199706121
+                        </a>
+                    </div>
+
+                    <p class="text-xs text-slate-400 pt-2">
+                        Managed & Run by: <strong class="text-slate-200">Gaurav Kumar</strong>
+                    </p>
+                </div>
+
+                <!-- Hero Banner Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-4 sm:p-6 shadow-2xl">
+                        <div class="relative rounded-2xl overflow-hidden mb-4">
+                            <img src="img/Banner.jpg" alt="Horizon Library Banner" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="p-2 sm:p-3 rounded-xl bg-slate-900/80 border border-slate-700/50">
+                                <p class="text-amber-400 font-black text-sm sm:text-base">100%</p>
+                                <p class="text-[10px] sm:text-xs text-slate-400 font-medium">AC Cooling</p>
+                            </div>
+                            <div class="p-2 sm:p-3 rounded-xl bg-slate-900/80 border border-slate-700/50">
+                                <p class="text-amber-400 font-black text-sm sm:text-base">5G</p>
+                                <p class="text-[10px] sm:text-xs text-slate-400 font-medium">High Speed</p>
+                            </div>
+                            <div class="p-2 sm:p-3 rounded-xl bg-slate-900/80 border border-slate-700/50">
+                                <p class="text-amber-400 font-black text-sm sm:text-base">24/7</p>
+                                <p class="text-[10px] sm:text-xs text-slate-400 font-medium">Power Backup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticker Bar -->
+    <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 py-2.5 font-bold text-[11px] sm:text-xs uppercase tracking-wide">
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-around items-center gap-2 text-center">
+            <span><i class="fa-solid fa-snowflake"></i> Fully AC</span>
+            <span><i class="fa-solid fa-wifi"></i> Free 5G Wi-Fi</span>
+            <span><i class="fa-solid fa-bolt"></i> 24x7 Power Backup</span>
+            <span><i class="fa-solid fa-shield-halved"></i> CCTV Security</span>
+        </div>
+    </div>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+            <span class="text-amber-500 font-bold text-xs uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full">Designed For Success</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">Study Facilities</h2>
+            <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1">Everything you need for long, productive study hours.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-brand-darkBorder shadow-sm glow-blue">
+                <div class="flex items-center space-x-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-brand-500 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 font-bold">
+                        <i class="fa-solid fa-snowflake"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">Fully Air Conditioned</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Optimal temperature control for year-round study comfort.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-brand-darkBorder shadow-sm glow-blue">
+                <div class="flex items-center space-x-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-brand-500 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 font-bold">
+                        <i class="fa-solid fa-volume-xmark"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">Silent & Peaceful Zone</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Strict zero-noise policy for deep-work focus.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-brand-darkBorder shadow-sm glow-blue">
+                <div class="flex items-center space-x-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-brand-500 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 font-bold">
+                        <i class="fa-solid fa-wifi"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">High-Speed Wi-Fi</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">High-speed internet for lectures and online mock tests.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-brand-darkBorder shadow-sm glow-amber">
+                <div class="flex items-center space-x-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-pink-50 dark:bg-pink-900/30 text-pink-500 flex items-center justify-center text-lg shrink-0 font-bold">
+                        <i class="fa-solid fa-person-dress"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">Dedicated Girls' Row</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Reserved and safe seating exclusively for female aspirants.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-brand-darkBorder shadow-sm glow-blue">
+                <div class="flex items-center space-x-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-brand-500 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 font-bold">
+                        <i class="fa-solid fa-plug"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">Personal Socket & Light</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Individual charging socket and LED light at every desk.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-brand-darkBorder shadow-sm glow-blue">
+                <div class="flex items-center space-x-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-brand-500 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 font-bold">
+                        <i class="fa-solid fa-glass-water"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">RO Purified Water</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Clean mineral RO drinking water with hot/cold dispenser.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Seat Map Preview -->
+    <section id="seats" class="py-12 sm:py-16 bg-slate-100/70 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="text-amber-500 font-bold text-xs uppercase tracking-widest">Interactive Map</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Select Seat Location</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Tap a desk number below to preview and hold your preferred seat.</p>
+            </div>
+
+            <!-- Seat Legend -->
+            <div class="flex flex-wrap justify-center gap-4 mb-6 text-xs font-semibold">
+                <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-emerald-500"></span> Available</div>
+                <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-pink-500"></span> Girls Row</div>
+                <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-slate-400"></span> Occupied</div>
+            </div>
+
+            <!-- Seat Grid Container -->
+            <div class="max-w-xl mx-auto bg-white dark:bg-brand-darkCard p-4 sm:p-6 rounded-3xl border border-slate-200 dark:border-brand-darkBorder shadow-lg">
+                <div class="grid grid-cols-4 sm:grid-cols-6 gap-2.5 my-2 text-center" id="seat-grid">
+                    <!-- Seats generated dynamically -->
+                </div>
+
+                <div id="selected-seat-info" class="hidden mt-4 p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-center text-xs text-amber-600 dark:text-amber-400 font-bold">
+                    Selected: <span id="seat-number-tag" class="underline">Seat #01</span>. Proceed to plans to lock it!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans & Pricing Section -->
+    <section id="plans" class="py-12 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+                <sp            }
         }
     </script>
     <style>
